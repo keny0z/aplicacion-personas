@@ -6,6 +6,9 @@ import co.com.personas.apipersonas.model.Persona;
 
 public interface PersonaService {
 
-	List<Persona> findAll = null;
+
+	List<Persona> findAll();
+
+	Persona findById(Integer idPersona);
 
 }

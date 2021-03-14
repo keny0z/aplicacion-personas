@@ -10,14 +10,29 @@ import co.com.personas.apipersonas.repository.PersonaRepository;
 
 @Repository
 public class PersonaDaoTextPlain implements PersonaRepository{
-	
+
 	@Override
-	public List<Persona> findAll(){
+	public List<Persona> findAll() {
 		List<Persona> personas= new ArrayList<>();
 		for (int i = 0; i < 50; i++) {
-			personas.add(new Persona(i+1, "nombres "+i+1,"apellidos "+i+1))
+			personas.add(new Persona(i+1, "tipoDocumento" +i, "numeroDocumento"+i, "nombres"+i, "apellidos"+i));
 		}
 		return personas;
 	}
+
+	@Override
+	public Persona findById(Integer idPersona) {
+		List<Persona> personas= findAll();
+		Persona persona= null;
+		for (Persona p : personas) {
+			if (p.getIdPersona().equals(idPersona)) {
+				persona=p;
+				break;
+			}
+		}
+		return persona;
+	}
+	
+	
 
 }
