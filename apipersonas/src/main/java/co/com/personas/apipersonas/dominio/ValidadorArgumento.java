@@ -11,8 +11,6 @@ import co.com.personas.apipersonas.dominio.excepcion.ExcepcionLongitudValor;
 import co.com.personas.apipersonas.dominio.excepcion.ExcepcionValorInvalido;
 import co.com.personas.apipersonas.dominio.excepcion.ExcepcionValorObligatorio;
 
-
-
 public class ValidadorArgumento {
 
 	public static void validarObligatorio(Object valor, String mensaje) {
@@ -26,15 +24,15 @@ public class ValidadorArgumento {
 			throw new ExcepcionLongitudValor(mensaje);
 		}
 	}
-	
+
 	public static void validarLongitudMaxima(String valor, int longitud, String mensaje) {
 		if (valor.length() > longitud) {
 			throw new ExcepcionLongitudValor(mensaje);
 		}
 	}
 
-	public static <T> void validarNoVacio(List<T> lista, String mensaje) {
-		if (lista.isEmpty()) {
+	public static <T> void validarNoVacio(T valor, String mensaje) {
+		if (valor.toString().isEmpty()) {
 			throw new ExcepcionValorObligatorio(mensaje);
 		}
 	}
@@ -86,7 +84,7 @@ public class ValidadorArgumento {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
 	}
-	
+
 	public static void validarMenor(float numeroInicial, float numeroFinal, String mensaje) {
 		if (numeroInicial > numeroFinal) {
 			throw new ExcepcionValorInvalido(mensaje);
@@ -110,13 +108,13 @@ public class ValidadorArgumento {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
 	}
-	
+
 	public static void validarMayor(double numeroInicial, double numeroFinal, String mensaje) {
 		if (numeroInicial < numeroFinal) {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
 	}
-	
+
 	public static void validarRegex(String correoElectronico, String regex, String mensaje) {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(correoElectronico);
@@ -146,5 +144,18 @@ public class ValidadorArgumento {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
 	}
+
+	public static void validarNumerosPermitidos(int numero, String mensaje) {
+		if (!(numero == 1 || numero == 2 || numero == 3 || numero == 4)) {
+			throw new ExcepcionValorInvalido(mensaje);
+
+		}
+	}
 	
+	public static void validarStringsIguales(String stringUno, String stringDos,String mensaje) {
+		if (stringUno.equals(stringDos)) {
+			throw new ExcepcionValorInvalido(mensaje);
+		}
+	}
+
 }
