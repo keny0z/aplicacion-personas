@@ -7,9 +7,11 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import co.com.personas.apipersonas.comando.dto.persona.PersonaDTO;
 import co.com.personas.apipersonas.dominio.excepcion.ExcepcionLongitudValor;
 import co.com.personas.apipersonas.dominio.excepcion.ExcepcionValorInvalido;
 import co.com.personas.apipersonas.dominio.excepcion.ExcepcionValorObligatorio;
+import co.com.personas.apipersonas.model.Persona;
 
 public class ValidadorArgumento {
 
@@ -146,15 +148,17 @@ public class ValidadorArgumento {
 	}
 
 	public static void validarNumerosPermitidos(int numero, String mensaje) {
-		if (!(numero == 1 || numero == 2 || numero == 3 || numero == 4)) {
+		if (!(numero == 1 || numero == 2)) {
 			throw new ExcepcionValorInvalido(mensaje);
 
 		}
 	}
 	
-	public static void validarStringsIguales(String stringUno, String stringDos,String mensaje) {
-		if (stringUno.equals(stringDos)) {
-			throw new ExcepcionValorInvalido(mensaje);
+	public static void validarDocumentoUnico(Iterable<Persona> personas, PersonaDTO personaDto,String mensaje) {
+		for (Persona personaAbuscar : personas) {
+			if (personaAbuscar.getNumeroDocumento().equals(personaDto.getNumeroDocumento()) && personaAbuscar.getTipoDocumento().getIdTipoDocumento().equals(personaDto.getIdTipoDocumento())) {
+				throw new ExcepcionValorInvalido(mensaje);
+			}
 		}
 	}
 

@@ -10,6 +10,7 @@ import co.com.personas.apipersonas.model.Persona;
 public class EntradaConverter {
 
 	public Entrada crear(EntradaDTO entradaDto) {
+		
 		Entrada entrada= new Entrada();
 		Persona persona= new Persona();
 		

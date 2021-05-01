@@ -1,4 +1,4 @@
-package co.com.personas.apipersonas.eliminar.controlador.persona;
+package co.com.personas.apipersonas.eliminar.controlador.movimiento;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,22 +9,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.personas.apipersonas.aplicacion.ComandoRespuesta;
-import co.com.personas.apipersonas.eliminar.manejador.persona.eliminar.ManejadorEliminarPersona;
+import co.com.personas.apipersonas.eliminar.manejador.movimiento.eliminar.ManejadorEliminarMovimiento;
 import io.swagger.annotations.Api;
 
-@Api(tags="Eliminar persona")
+@Api(tags="Eliminar movimiento")
 @RestController
-@RequestMapping("/v1/persona")
+@RequestMapping("/v1/movimiento")
 @CrossOrigin(origins = "*", methods = { RequestMethod.DELETE })
-public class ControladorEliminarPersona {
+public class ControladorEliminarMovimiento {
 
 	@Autowired
-	private ManejadorEliminarPersona manejadorEliminarPersona;
+	private ManejadorEliminarMovimiento manejadorEliminarMovimiento;
 
-	@DeleteMapping("/{idPersona}")
-	public ComandoRespuesta<Integer> eliminar(@PathVariable Integer idPersona) {
+	@DeleteMapping("/{idMovimiento}")
+	public ComandoRespuesta<Integer> eliminar(@PathVariable Integer idMovimiento) {
 
-		return manejadorEliminarPersona.ejecutar(idPersona);
+		return manejadorEliminarMovimiento.ejecutar(idMovimiento);
 	}
-
 }
